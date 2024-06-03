@@ -120,7 +120,7 @@ def webhook():
     print(1)
     if request.method == "POST":
         print(2)
-        repo = git.Repo("path/to/git_repo")
+        repo = git.Repo("/home/vokymir/mysite")
         print(3)
         origin = repo.remotes.origin
         print(4)

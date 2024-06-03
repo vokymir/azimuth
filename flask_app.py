@@ -117,12 +117,18 @@ import git
 
 @app.route("/update_server", methods=["POST"])
 def webhook():
+    print(1)
     if request.method == "POST":
+        print(2)
         repo = git.Repo("path/to/git_repo")
+        print(3)
         origin = repo.remotes.origin
+        print(4)
         origin.pull()
+        print(5)
         return "Updated PythonAnywhere successfully", 200
     else:
+        print(6)
         return "Wrong event type", 400
 
 

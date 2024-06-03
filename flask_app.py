@@ -23,12 +23,14 @@ https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e6
 THIS IS ONLY BECAUSE I AM KINDa NEW TO GIT in general
 
 To make it work, I had to:
-    pip install GitPython (here and on remote)
+    pip install GitPython (here and on server bash)
+
 open bash console on pythonanywhere and type
     git init (on /mysite)
     git remote add origin https://github.com/vokymir/azimuth.git
     git config --global branch.autoSetupMerge always (i dont know if this helped, suggested by AI)
     git branch --set-upstream-to=origin/main master
+
 and I also did copy this to git/config
     [branch "main"]
 	    remote = origin
@@ -37,6 +39,10 @@ but its probably redundat as after bash commands it created
     [branch "master"]
 	    remote = origin
 	    merge = refs/heads/main
+
+on server bash
+18:31 ~/mysite/.git/hooks (master)$ chmod +x post-merge
+and now it auto-reloads after push
 """
 
 

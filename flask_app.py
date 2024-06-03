@@ -33,7 +33,7 @@ def webhook():
         return "Wrong event type", 400
 
 
-# test push 2
+# test push 3
 
 
 @app.route("/", methods=["GET", "POST"])

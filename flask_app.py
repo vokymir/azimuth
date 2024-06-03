@@ -47,7 +47,7 @@ and now it auto-reloads after push
 
 then following tutorial, create env variable,
 to install dotenv, pip install python-dotenv
-
+but more or less without problem
 """
 
 

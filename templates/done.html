@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div id="wrapper_res">
+
+    <h2>Výsledek</h2>
+
+    <p>
+        {% for line in lines %}
+        {{ line }} <br>
+        {% endfor %}
+    </p>
+    <br>
+
+    {% if ">>" in lines[0] %}
+
+    <div style="display: flex; align-items: center; flex-direction: row; gap: 16px;">
+        <form method=post enctype=multipart/form-data>
+            <input type=hidden name="lines" value="{{ lines }}">
+            <input type=submit value="Stáhnout">
+        </form>
+
+        <button onclick="copyToClipboard({{ lines }})">Kopírovat</button>
+    </div>
+    <script>
+        function copyToClipboard(text) {
+            res = ""
+            for (let i = 0; i < text.length; i++) {
+                res += text[i] + "\n";
+            }
+            res += "\nVytvořeno pomocí https://vokymir.eu.pythonanywhere.com/\nAplikace od Vokyho z 55. přední hlídky Royal Rangers Přeštice\nVoky & spol. - https://www.youtube.com/@Voky_spol\n55. ph RR - https://www.facebook.com/prestice.royalrangers\nOmluvuju se za zprávu, nemohl jsem si pomoct."
+            navigator.clipboard.writeText(res);
+            alert("Zkopírováno!");
+        }
+    </script>
+
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

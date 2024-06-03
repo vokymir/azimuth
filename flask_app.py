@@ -44,6 +44,10 @@ but its probably redundat as after bash commands it created
 on server bash
 18:31 ~/mysite/.git/hooks (master)$ chmod +x post-merge
 and now it auto-reloads after push
+
+then following tutorial, create env variable,
+to install dotenv, pip install python-dotenv
+
 """
 
 

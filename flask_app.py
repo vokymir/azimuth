@@ -16,24 +16,40 @@ def hello_world():
     return render_template("index.html")
 
 
+"""
+Following tutorial:
+https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664
+
+THIS IS ONLY BECAUSE I AM KINDa NEW TO GIT in general
+
+To make it work, I had to:
+    pip install GitPython (here and on remote)
+open bash console on pythonanywhere and type
+    git init (on /mysite)
+    git remote add origin https://github.com/vokymir/azimuth.git
+    git config --global branch.autoSetupMerge always (i dont know if this helped, suggested by AI)
+    git branch --set-upstream-to=origin/main master
+and I also did copy this to git/config
+    [branch "main"]
+	    remote = origin
+	    merge = refs/heads/main
+but its probably redundat as after bash commands it created 
+    [branch "master"]
+	    remote = origin
+	    merge = refs/heads/main
+"""
+
+
 @app.route("/update_server", methods=["POST"])
 def webhook():
-    print(1)
     if request.method == "POST":
-        print(2)
         repo = git.Repo("/home/vokymir/mysite")
-        print(3)
         origin = repo.remotes.origin
-        print(4)
         origin.pull()
-        print(5)
         return "Updated PythonAnywhere successfully", 200
     else:
         print(6)
         return "Wrong event type", 400
-
-
-# test push 3
 
 
 @app.route("/", methods=["GET", "POST"])

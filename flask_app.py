@@ -1,5 +1,6 @@
 from flask import Flask, request, send_from_directory, render_template, Response
 import azimuth
+import git
 
 ALLOWED_EXTENSIONS = {"gpx"}
 
@@ -13,6 +14,26 @@ def allowed_file(filename):
 @app.route("/")
 def hello_world():
     return render_template("index.html")
+
+
+@app.route("/update_server", methods=["POST"])
+def webhook():
+    print(1)
+    if request.method == "POST":
+        print(2)
+        repo = git.Repo("/home/vokymir/mysite")
+        print(3)
+        origin = repo.remotes.origin
+        print(4)
+        origin.pull()
+        print(5)
+        return "Updated PythonAnywhere successfully", 200
+    else:
+        print(6)
+        return "Wrong event type", 400
+
+
+# test push 2
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -110,26 +131,3 @@ def make_valid_filename(string: str) -> str:
             newstr += char
 
     return newstr
-
-
-import git
-
-
-@app.route("/update_server", methods=["POST"])
-def webhook():
-    print(1)
-    if request.method == "POST":
-        print(2)
-        repo = git.Repo("/home/vokymir/mysite")
-        print(3)
-        origin = repo.remotes.origin
-        print(4)
-        origin.pull()
-        print(5)
-        return "Updated PythonAnywhere successfully", 200
-    else:
-        print(6)
-        return "Wrong event type", 400
-
-
-# test push 2

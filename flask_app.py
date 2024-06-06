@@ -5,6 +5,7 @@ import os
 ALLOWED_EXTENSIONS = {"gpx"}
 
 app = Flask(__name__)
+# comment next line for local run via: flask --app flask_app run
 w_secret = os.environ["SECRET_KEY"]
 
 
